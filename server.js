@@ -25,16 +25,53 @@ app.post("/suscribe", async (req, res) => {
   console.log(`::::::::: Se recibio el email: ${email}:::::::::::`);
 
   let subject = "Bienvenido, Gracias por suscribirte";
-  let text = `Te has suscrito con el correo: ${email} a You-Car`
-  let html = `<p>Gracias si deseas agendar un cita para visitarnos has <a href="www.youtube.com"> click aqui </a> </p>`
-  
-  let emailenterprise = 'ic3386941@gmail.com';
-  let subjectenterprise = 'Nuevo usuario suscrito';
+  let text = `Te has suscrito con el correo: ${email} a You-Car`;
+  let html = `
+   <div
+      style="
+        box-sizing: border-box;
+        margin: 0;
+        padding: 50px;
+        background-image: url(https://i.postimg.cc/jSH1VcPb/Fondo-1.jpg);
+        width: 500px;
+        height: 750px;
+        border-radius: 30px;
+        font-family: Georgia, serif;
+        color: white;
+      "
+    >
+      <div
+        style="
+        width: 300px;
+        margin: 0 auto;
+        position: relative;
+        "
+      >
+        <p style="font-size: 40px; margin: 0 0 0 20px; text-align: start; font-weight: 600;">
+          Bienvenidos
+        </p>
+        <p style="font-size: 40px; margin: 0; text-align: center">a</p>
+        <p style="color: rgb(79, 139, 235); font-size: 50px; text-align: start; margin: 0; font-weight: bold;">TROCAS</p>
+        <p style="text-align: end; font-size: 50px; color: rgb(79, 139, 235); margin: 0; font-weight: bold;">SAN JÓSE</p>
+        <p style="text-align: center; font-size: 120px; margin: 0; font-weight: bold; ">1,286</p>
+        <p style="font-size: 26px; text-align: center; font-weight: bold;">AUTOS EN NUESTRO CATALOGO</p>
+        <button style="background-color: blue; border-radius: 20px; padding: 10px 20px; margin-top: 20px;" type="button"><a style="text-decoration: none; font-size: 30px; font-weight: bold; color: white;" href="youtube.com">AGENDA AHORA</a></button>
+      </div>
+    </div>
+  `;
+
+  let emailenterprise = "ic3386941@gmail.com";
+  let subjectenterprise = "Nuevo usuario suscrito";
   let textenterprise = `Probando`;
-  let htmlenterprise = `<p> El usuario ${email} se acaba de suscribir a nuestro sitio <p>`  
+  let htmlenterprise = `<p> El usuario ${email} se acaba de suscribir a nuestro sitio <p>`;
   try {
     await enviarCorreo(email, subject, text, html);
-    await enviarCorreo(emailenterprise, subjectenterprise, textenterprise, htmlenterprise);
+    await enviarCorreo(
+      emailenterprise,
+      subjectenterprise,
+      textenterprise,
+      htmlenterprise
+    );
     res.status(200).send({
       message: "status: 200, Correo enviado satisfactoriamente",
     });
@@ -46,13 +83,27 @@ app.post("/suscribe", async (req, res) => {
 });
 
 app.post("/enviarformulario", async (req, res) => {
+  let { email } = req.body;
 
-  let subject = "Cita agendada"
-  let text = "Agradecemos que hayas agendado una cita para poder visualizar nuestros autos, esperamos anciosamente tu visita"
-  let html = "<h1>Te esperamos</h1> <p> Has agendado cita para el proximo 25/10/2025 a las 10:00 alli nos vemos </p>"
-  
+  let subject = "Cita agendada";
+  let text =
+    "Agradecemos que hayas agendado una cita para poder visualizar nuestros autos, esperamos anciosamente tu visita";
+  let html = `
+   <div style="box-sizing: border-box; text-align: center; font-weight: bold; color: white; font-family: Georgia, serif; letter-spacing: 3px; font-size: 20px; background-image: url('https://i.postimg.cc/wj8rbZt2/Fondo-2.jpg'); background-position: center; background-size: cover; background-repeat: no-repeat; width: 500px; height: 100vh; border-radius: 30px; padding: 20px; ">
+        <img src="https://i.postimg.cc/TYgxwrgk/IMG-4837.png" alt="Gracias por agendar tu cita" style="width: 80%; height: 50%; margin: 20px auto 40px auto;">
+        <div style="text-align: start; display: grid; grid-template-columns: 100px auto; grid-template-rows: auto auto auto; gap: 20px; justify-content: start;">
+            <span style="color: blue;">Dia:</span>
+            <span>October 25, 2025</span>
+            <span style="color: blue;">Hora:</span>
+            <span>10:00pm</span>
+            <span style="color: blue;">Motivo: </span>
+            <span>Visita al concecionario</span>
+        </div>
+    </div>
+  `;
+
   try {
-    await enviarCorreo(email, subject , text , html);
+    await enviarCorreo(email, subject, text, html);
     await crearJson(nombre, email, mensaje);
     res.status(200).send({
       message: "Correo enviado satisfactoriamente",
