@@ -13,6 +13,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+let email;
+
 app.get("/", function (req, res) {
   res.status(200).send({
     message: "Servidor funcionando",
@@ -55,7 +57,7 @@ app.post("/suscribe", async (req, res) => {
         <p style="text-align: end; font-size: 50px; color: rgb(79, 139, 235); margin: 0; font-weight: bold;">SAN JÓSE</p>
         <p style="text-align: center; font-size: 120px; margin: 0; font-weight: bold; ">1,286</p>
         <p style="font-size: 26px; text-align: center; font-weight: bold;">AUTOS EN NUESTRO CATALOGO</p>
-        <button style="background-color: blue; border-radius: 20px; padding: 10px 20px; margin-top: 20px;" type="button"><a style="text-decoration: none; font-size: 30px; font-weight: bold; color: white;" href="youtube.com">AGENDA AHORA</a></button>
+        <button style="background-color: blue; border-radius: 20px; padding: 10px 20px; margin-top: 20px;" type="button"><a style="text-decoration: none; font-size: 30px; font-weight: bold; color: white;" href="http://localhost:5173">AGENDA AHORA</a></button>
       </div>
     </div>
   `;
@@ -83,11 +85,9 @@ app.post("/suscribe", async (req, res) => {
 });
 
 app.post("/enviarformulario", async (req, res) => {
-  let { email } = req.body;
-
+  // let { nombre, apellidos, telefono } = req.body;
+  /*
   let subject = "Cita agendada";
-  let text =
-    "Agradecemos que hayas agendado una cita para poder visualizar nuestros autos, esperamos anciosamente tu visita";
   let html = `
    <div style="box-sizing: border-box; text-align: center; font-weight: bold; color: white; font-family: Georgia, serif; letter-spacing: 3px; font-size: 20px; background-image: url('https://i.postimg.cc/wj8rbZt2/Fondo-2.jpg'); background-position: center; background-size: cover; background-repeat: no-repeat; width: 500px; height: 100vh; border-radius: 30px; padding: 20px; ">
         <img src="https://i.postimg.cc/TYgxwrgk/IMG-4837.png" alt="Gracias por agendar tu cita" style="width: 80%; height: 50%; margin: 20px auto 40px auto;">
@@ -101,10 +101,17 @@ app.post("/enviarformulario", async (req, res) => {
         </div>
     </div>
   `;
+  */
+  
+
+  // datos para correo de la empresa
+  let emailempresa = 'ic3386941@gmail.com';
+  let subjectempresa = `Nuevo cita agendada por el usuriario:`;
+  let htmlempresa = `<p> Nueva cita registrada datos del usuario nombre:  apellidos:  telefono: </p>`;
 
   try {
-    await enviarCorreo(email, subject, text, html);
-    await crearJson(nombre, email, mensaje);
+    // await enviarCorreo(email, subject, html);
+    await enviarCorreo(emailempresa, subjectempresa, htmlempresa);
     res.status(200).send({
       message: "Correo enviado satisfactoriamente",
     });

@@ -1,7 +1,6 @@
 const nodemailer = require("nodemailer");
 
-const enviarCorreo = async (email, subject, text, html) => {
-
+const enviarCorreo = async (email, subject, html) => {
   /*
   var transport = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io",
@@ -13,24 +12,27 @@ const enviarCorreo = async (email, subject, text, html) => {
   });
   */
 
-   var transport2 = nodemailer.createTransport({
-    service: 'gmail.com',
+  var transport2 = nodemailer.createTransport({
+    service: "gmail.com",
     port: 587,
     secure: true,
     auth: {
       user: "ic3386941@gmail.com",
-      pass: "iucm uxyj mdum lclf"
-    }
-  })
-  
-
-  await transport2.sendMail({
-    from: "ic3386941@gmail.com",
-    to: email,
-    subject: subject,
-    text: text,
-    html: html,
+      pass: "iucm uxyj mdum lclf",
+    },
   });
+
+  try {
+    await transport2.sendMail({
+      from: "ic3386941@gmail.com",
+      to: email,
+      subject: subject,
+      html: html,
+    });
+    
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = enviarCorreo;

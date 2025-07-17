@@ -6,20 +6,14 @@
   </head>
   <body>
     <h2>Formulario</h2>
-    <!-- Calendly inline widget begin -->
-    <div
-      class="calendly-inline-widget"
-      data-url="https://calendly.com/ic3386941/reunion-con-el-cliente"
-      style="min-width: 320px; height: 700px"
-    ></div>
-
-    <!-- eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNzUyMzYyNzA5LCJqdGkiOiI1MDg3NDU5OC1hNTcyLTQ2YTgtYjhkMC01NjBiN2FhZjZkYTkiLCJ1c2VyX3V1aWQiOiJkY2ExZDllMy1mODYyLTQyNjctYWVlOS00OTg2YmFkMWRiZTgifQ.IZcYnOf5oER0ujpHlbZZxZKtkE8yj-f3Jgjiodxh4TZFOP4IFMoEWqGpeLUyRBwBDcVTzQ7CG5IMm_t0dydhuA -->
-
-    <script
-      type="text/javascript"
-      src="https://assets.calendly.com/assets/external/widget.js"
-      async
-    ></script>
-    <!-- Calendly inline widget end -->
+    <form action="http://localhost:3000/enviarformulario" method="POST">
+      <label for="nombre">Nombre</label>
+      <input type="text" name="nombre">
+      <label for="nombre">Apellido</label>
+      <input type="text" name="apellidos">
+      <label for="nombre">Telefono</label>
+      <input type="text" name="telefono">
+      <button type="submit">Enviar</button>
+    </form>
   </body>
 </html>
